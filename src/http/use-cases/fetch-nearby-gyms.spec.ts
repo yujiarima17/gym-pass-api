@@ -18,6 +18,7 @@ describe("fetch Nearby Gyms  Use Case", () => {
 			latitude: -23.534443,
 			longitude: -46.6395357,
 		});
+
 		await gymsRepository.create({
 			title: "Far Gym",
 			description: null,
@@ -25,14 +26,13 @@ describe("fetch Nearby Gyms  Use Case", () => {
 			latitude: -23.4792817,
 			longitude: -46.5458546,
 		});
+
 		const { gyms } = await sut.execute({
 			userlatitude: -23.534443,
 			userlongitude: -46.6395357,
 		});
 
 		expect(gyms).toHaveLength(1);
-		expect(gyms).toEqual([
-			expect.objectContaining({ title: "Near Gym" }),
-		]);
+		expect(gyms).toEqual([expect.objectContaining({ title: "Near Gym" })]);
 	});
 });

@@ -36,6 +36,7 @@ export class InMemoryCheckInsRepository implements CheckInsRepository {
 		if (!checkIn) {
 			return null;
 		}
+		
 		return checkIn;
 	}
 

@@ -11,6 +11,7 @@ export class InMemoryGymsRepository implements GymsRepository {
 			.filter((item) => item.title.includes(query))
 			.slice((page - 1) * 20, page * 20);
 	}
+
 	async findManyNearby({ latitude, longitude }: FindManyNearbyParams) {
 		return this.items.filter((item) => {
 			const distance = getDistanceBetweenCoordinates(
@@ -23,16 +24,21 @@ export class InMemoryGymsRepository implements GymsRepository {
 					longitude: item.longitude.toNumber(),
 				}
 			);
+			
 			return distance < 10;
 		});
 	}
+
 	async findById(id: string) {
 		const gym = this.items.find((item) => item.id === id);
+		
 		if (!gym) {
 			return null;
 		}
+
 		return gym;
 	}
+
 	async create(data: Prisma.GymCreateInput) {
 		const gym = {
 			id: data.id ?? randomUUID(),
@@ -43,6 +49,7 @@ export class InMemoryGymsRepository implements GymsRepository {
 			longitude: new Prisma.Decimal(data.longitude.toString()),
 			created_at: new Date(),
 		};
+
 		this.items.push(gym);
 		return gym;
 	}

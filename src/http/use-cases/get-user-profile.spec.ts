@@ -18,6 +18,7 @@ describe("Get User Profile Use Case", () => {
 			email: "johndoe@example.com",
 			password_hash: await hash("123456", 6),
 		});
+
 		const { user } = await sut.execute({
 			userId: createdUser.id,
 		});

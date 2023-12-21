@@ -18,6 +18,7 @@ describe("Search Gyms  Use Case", () => {
 			latitude: -23.534443,
 			longitude: -46.6395357,
 		});
+
 		await gymsRepository.create({
 			title: "Typescript Gym",
 			description: null,
@@ -25,6 +26,7 @@ describe("Search Gyms  Use Case", () => {
 			latitude: -23.534443,
 			longitude: -46.6395357,
 		});
+
 		const { gyms } = await sut.execute({
 			query: "JavaScript",
 			page: 1,
@@ -45,6 +47,7 @@ describe("Search Gyms  Use Case", () => {
 				longitude: -46.6395357,
 			});
 		}
+
 		const { gyms } = await sut.execute({
 			query: "JavaScript",
 			page: 2,

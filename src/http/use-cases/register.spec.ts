@@ -18,6 +18,7 @@ describe("Register Use Case", () => {
 			email: "johndoe@example.com",
 			password: "123456",
 		});
+
 		expect(user.id).toEqual(expect.any(String));
 	});
 
@@ -27,20 +28,24 @@ describe("Register Use Case", () => {
 			email: "johndoe@example.com",
 			password: "123456",
 		});
+
 		const isPasswordCorrectlyHashed = await compare(
 			"123456",
 			user.password_hash
 		);
+
 		expect(isPasswordCorrectlyHashed).toBe(true);
 	});
 
 	it("it should not be able to register with the same email twice", async () => {
 		const email = "johndoe@example.com";
+
 		await sut.execute({
 			name: "John Doe",
 			email,
 			password: "123456",
 		});
+
 		await expect(() =>
 			sut.execute({
 				name: "John Doe",
