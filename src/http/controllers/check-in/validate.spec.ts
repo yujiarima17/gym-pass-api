@@ -2,7 +2,7 @@ import request from "supertest";
 import { app } from "@/app";
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import { createAndAuthenticateUser } from "@/utils/test/create-and-authenticate";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/repositories/lib/prisma";
 
 describe("Validate Check-in (e2e)", () => {
 	beforeAll(async () => {
@@ -14,7 +14,7 @@ describe("Validate Check-in (e2e)", () => {
 	});
 
 	it("should be able to create a check-in ", async () => {
-		const { token } = await createAndAuthenticateUser(app);
+		const { token } = await createAndAuthenticateUser(app, true);
 
 		const gym = await prisma.gym.create({
 			data: {
